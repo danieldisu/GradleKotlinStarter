@@ -1,0 +1,43 @@
+group 'com.danieldisu'
+version '0.1'
+
+buildscript {
+    ext.kotlin_version = '0.12.1230'
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'kotlin'
+
+
+sourceSets {
+    main {
+        kotlin {
+            srcDir "src/main/kotlin"
+        }
+        java {
+            srcDir "src/main/java"
+        }
+    }
+    test {
+        kotlin {
+            srcDir "test/main/kotlin"
+        }
+    }
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile("junit:junit:4.12")
+}
+repositories {
+    mavenCentral()
+}
